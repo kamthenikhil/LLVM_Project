@@ -1,0 +1,15 @@
+Group member information:
+
+- Sachin Shinde <sshin031@ucr.edu> : 861243251
+- Nikhil Kamthe <nkamt001@ucr.edu> : 861245635
+
+Running the pass and the generated IR (to test support/sample.c):
+
+$ ./buildAndTest.sh sample
+
+# Above script does the following:
+
+$ clang -emit-llvm support/sample.c -c -o support/sample.bc
+$ make clean && make && ~/Workspace/llvm/Debug+Asserts/bin/opt -load ../../../Debug+Asserts/lib/BasicBlocksDemo.so -<commandline arg in register pass> sample.bc -S -o support/sample.ll
+$ ~/Workspace/llvm/Debug+Asserts/bin/llvm-as support/sample.ll -o support/sample.bb.bc
+$ ~/Workspace/llvm/Debug+Asserts/bin/lli support/sample.bb.bc
